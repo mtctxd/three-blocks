@@ -1,7 +1,7 @@
 import { OrbitControls, useContextBridge } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import setCameraHeight from '../features/setCameraHeight';
-import Scene from './Scene';
+import Scene from './Scene/Scene';
 
 const Canva = ({ fetchedData }) => {
   const { height, width } = fetchedData;

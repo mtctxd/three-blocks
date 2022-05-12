@@ -6,7 +6,7 @@ const App = () => {
   const [fetchedData, setfetchedData] = useState(null);
 
   useEffect(() => {
-    fetchData('cl3354ekq000t09mn9sm8atfp-2653510537778623').then(setfetchedData);
+    fetchData('cl335ru56000x09mnejyk9tu2-3616228575681977').then(setfetchedData);
   }, []);
 
   console.log(fetchedData);
