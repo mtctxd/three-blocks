@@ -9,15 +9,30 @@ const Canva = ({ fetchedData }) => {
   const cameraDistance = setCameraHeight(widerPart / 2, 75) / 3 + 100;
 
   return (
-    <Canvas
-      camera={{
-        position: [0, 0, cameraDistance],
-        far: cameraDistance + 1000
-      }}
+    <div
+        style={{
+            // width: '100%',
+            // height: '100%',
+            flexGrow: 1
+        }}
     >
-      <OrbitControls />
-      <Scene fetchedData={fetchedData} />
-    </Canvas>
+      <Canvas
+        camera={{
+          position: [0, 0, cameraDistance],
+          far: cameraDistance + 1000,
+        }}
+        style={{
+        //   position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%'
+        }}
+      >
+        <OrbitControls />
+        <Scene fetchedData={fetchedData} />
+      </Canvas>
+    </div>
   );
 };
 

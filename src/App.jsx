@@ -1,18 +1,31 @@
 import { useEffect, useState } from 'react';
 import Canva from './components/Canva';
+import UserInterface from './components/UserInterface';
 import fetchData from './features/fetchData';
 
 const App = () => {
   const [fetchedData, setfetchedData] = useState(null);
+  const [query, setQuery] = useState(null);
+  const [isBIttonClicked, setIsButtonClicked] = useState(false);
 
   useEffect(() => {
-    fetchData('cl335ru56000x09mnejyk9tu2-3616228575681977').then(setfetchedData);
-  }, []);
+    if (query && isBIttonClicked) {
+      fetchData(query).then(setfetchedData);
+      setIsButtonClicked(false);
+    }
+    if (!fetchedData) {
+      fetchData().then(setfetchedData);
+    }
+  }, [isBIttonClicked, query, fetchedData]);
 
   console.log(fetchedData);
   return (
-    <div className="App" style={{ width: '100vw', height: '100vh' }}>
-      {fetchedData && <Canva fetchedData={fetchedData.project}/>}
+    <div className="App" style={{ display: 'flex', flexDirection: 'column' }}>
+      <UserInterface
+        userInterfaceHandlers={{ query, setQuery, setIsButtonClicked }}
+        fetchedData={fetchedData}
+      />
+      {fetchedData && <Canva fetchedData={fetchedData.project} />}
     </div>
   );
 };
