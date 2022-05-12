@@ -7,7 +7,6 @@ const Canva = ({ fetchedData }) => {
   const { height, width } = fetchedData;
   const widerPart = height > width ? height : width;
   const cameraDistance = setCameraHeight(widerPart / 2, 75) / 3 + 100;
-  console.log(cameraDistance);
 
   return (
     <Canvas
