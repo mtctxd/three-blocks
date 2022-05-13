@@ -1,8 +1,5 @@
-const setCameraHeight = (catet, fov) => {
-  const hipotenuseLength = catet / Math.cos((Math.PI / 180) * fov);
-  const cameraHeight = Math.sqrt(hipotenuseLength ** 2 - catet ** 2);
-
-  return cameraHeight;
+const setCameraHeight = (widerPart) => {
+  return (widerPart / 2) * Math.cos((Math.PI / 180) * 15) * 1.5;;
 };
 
 export default setCameraHeight;

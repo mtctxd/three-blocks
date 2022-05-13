@@ -1,7 +1,7 @@
 const UserInterface = ({ userInterfaceHandlers, fetchedData }) => {
-  const { query, setQuery, setIsButtonClicked } = userInterfaceHandlers;
+  const { setQuery, setIsButtonClicked } = userInterfaceHandlers;
   return (
-    <div>
+    <div className="user-interface">
       <span>Project ID: </span>
       <input type="text" onChange={(event) => setQuery(event.target.value)}/>
       <button

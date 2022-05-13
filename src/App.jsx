@@ -1,30 +1,25 @@
-import { useEffect, useState } from 'react';
 import Canva from './components/Canva';
 import UserInterface from './components/UserInterface';
-import fetchData from './features/fetchData';
+
+import useFetchData from './hooks/useFetchData';
 
 const App = () => {
-  const [fetchedData, setfetchedData] = useState(null);
-  const [query, setQuery] = useState(null);
-  const [isBIttonClicked, setIsButtonClicked] = useState(false);
+  const { fetchedData, error, setIsButtonClicked, setQuery } = useFetchData();
 
-  useEffect(() => {
-    if (query && isBIttonClicked) {
-      fetchData(query).then(setfetchedData);
-      setIsButtonClicked(false);
-    }
-    if (!fetchedData) {
-      fetchData().then(setfetchedData);
-    }
-  }, [isBIttonClicked, query, fetchedData]);
+  console.log(error);
 
   console.log(fetchedData);
   return (
-    <div className="App" style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className="App">
       <UserInterface
-        userInterfaceHandlers={{ query, setQuery, setIsButtonClicked }}
+        userInterfaceHandlers={{ setQuery, setIsButtonClicked }}
         fetchedData={fetchedData}
       />
+      {error && (
+        <div className='error-message'>
+          error
+        </div>
+      )}
       {fetchedData && <Canva fetchedData={fetchedData.project} />}
     </div>
   );

@@ -6,27 +6,20 @@ import Scene from './Scene/Scene';
 const Canva = ({ fetchedData }) => {
   const { height, width } = fetchedData;
   const widerPart = height > width ? height : width;
-  const cameraDistance = setCameraHeight(widerPart / 2, 75) / 3 + 100;
+  const cameraDistance = setCameraHeight(widerPart);
 
   return (
-    <div
-        style={{
-            // width: '100%',
-            // height: '100%',
-            flexGrow: 1
-        }}
-    >
+    <div className='canva'>
       <Canvas
         camera={{
-          position: [0, 0, cameraDistance],
-          far: cameraDistance + 1000,
+          position: [50, 0, cameraDistance],
+          far: cameraDistance + widerPart,
         }}
         style={{
-        //   position: 'fixed',
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%'
+          height: '100%',
         }}
       >
         <OrbitControls />
