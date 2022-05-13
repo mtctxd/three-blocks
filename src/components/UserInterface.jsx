@@ -1,5 +1,7 @@
-const UserInterface = ({ userInterfaceHandlers, fetchedData }) => {
+const UserInterface = ({ userInterfaceHandlers, fetchedData, error }) => {
   const { setQuery, setIsButtonClicked } = userInterfaceHandlers;
+
+  console.log(`error in interface: ${JSON.stringify(fetchedData)}`);
   return (
     <div className="user-interface">
       <span>Project ID: </span>
@@ -9,10 +11,10 @@ const UserInterface = ({ userInterfaceHandlers, fetchedData }) => {
       >Fetch</button>
       <hr />
       <div>
-          {`Project ID: ${fetchedData ? fetchedData.id : 'null'}`}
+          {`Project ID: ${fetchedData && !error ? fetchedData.id : 'null'}`}
       </div>
       <div>
-          {`Project Name: ${fetchedData ? fetchedData.project.name : 'null'}`}
+          {`Project Name: ${fetchedData && !error ? fetchedData.project.name : 'null'}`}
       </div>
     </div>
   );

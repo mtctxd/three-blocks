@@ -6,21 +6,21 @@ import useFetchData from './hooks/useFetchData';
 const App = () => {
   const { fetchedData, error, setIsButtonClicked, setQuery } = useFetchData();
 
-  console.log(error);
+  console.log(JSON.stringify(error));
 
   console.log(fetchedData);
   return (
     <div className="App">
-      <UserInterface
+      {/* <UserInterface
         userInterfaceHandlers={{ setQuery, setIsButtonClicked }}
-        fetchedData={fetchedData}
-      />
+        fetchedData={!error ? fetchedData : null}
+      /> */}
       {error && (
         <div className='error-message'>
-          error
+          {error}
         </div>
       )}
-      {fetchedData && <Canva fetchedData={fetchedData.project} />}
+      {/* {fetchedData && !error && <Canva fetchedData={fetchedData.project} />} */}
     </div>
   );
 };

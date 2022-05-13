@@ -10,20 +10,18 @@ const useFetchData = () => {
 
   useEffect(() => {
     if (query && isBIttonClicked) {
-      fetchData(query)
+      fetchData(setError, query)
         .then(setfetchedData)
-        .then(() => setError(false))
-        .catch(setError);
       setIsButtonClicked(false);
     }
     if (!query && isBIttonClicked) {
-      fetchData('cklziyda30000m19k92zfao28-9430719080200028')
+      fetchData(setError)
         .then(setfetchedData)
-        .then(() => setError(false))
-        .catch(setError);
       setIsButtonClicked(false);
     }
   }, [isBIttonClicked, query, fetchedData]);
+
+  console.log(`hookerror: ${error}`);
 
   return {
     fetchedData,
