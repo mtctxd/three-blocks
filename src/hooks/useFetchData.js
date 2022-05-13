@@ -3,25 +3,23 @@ import { useEffect, useState } from 'react';
 import fetchData from '../features/fetchData';
 
 const useFetchData = () => {
-  const [fetchedData, setfetchedData] = useState(null);
+  const [fetchedData, setFetchedData] = useState(null);
   const [query, setQuery] = useState(null);
-  const [isBIttonClicked, setIsButtonClicked] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (query && isBIttonClicked) {
-      fetchData(setError, query)
-        .then(setfetchedData)
-      setIsButtonClicked(false);
-    }
-    if (!query && isBIttonClicked) {
-      fetchData(setError)
-        .then(setfetchedData)
-      setIsButtonClicked(false);
-    }
-  }, [isBIttonClicked, query, fetchedData]);
+    console.log(isButtonClicked, query);
 
-  console.log(`hookerror: ${error}`);
+    if (isButtonClicked && query) {
+      fetchData(setError, setFetchedData, query);
+      setIsButtonClicked(false);
+    }
+    if (isButtonClicked && !query) {
+      fetchData(setError, setFetchedData);
+      setIsButtonClicked(false);
+    }
+  }, [isButtonClicked, query]);
 
   return {
     fetchedData,

@@ -1,28 +1,44 @@
 import { BASE_URL } from '../constants';
 
-const fetchData = async (errorSetter, projectId) => {
+const fetchData = async (errorSetter, dataSetter, projectId) => {
   try {
-    let projectData = null;
+      console.log(`projectId: ${projectId}`);
+    if (projectId) {
+      const data = await fetch(`${BASE_URL}/project/${projectId}`);
+      if (!data.ok) {
+        errorSetter(`Something went wrong. Status coed: ${data.status}`);
+      } else {
+        const json = await data.json();
+        errorSetter(false);
+        dataSetter(json);
+      }
 
-    if (!projectId) {
-      const initData = await fetch(`${BASE_URL}/init`);
-      const initJson = await initData.json();
-
-      projectData = await fetchData(errorSetter, initJson.id);
-    } else {
-      projectData = await fetch(`${BASE_URL}/project/${projectId}`);
+      return;
     }
 
-    if (!projectData.ok) {
-      errorSetter(`Something went wrong: ${projectData.status}`);
+    console.log(`!projectId ${projectId}`);
+      const initialData = await fetch(`${BASE_URL}/init`);
 
-      console.log(projectData);
-      return projectData;
-    }
-    errorSetter(false);
-    return projectData.json();
+      if (!initialData.ok) {
+        errorSetter(initialData.message);
+      } else {
+        const json = await initialData.json();
+
+        const data = await fetch(`${BASE_URL}/project/${json.id}`);
+
+        if (!data.ok) {
+          errorSetter(`Something went wrong. Status coed: ${data.status}`);
+        } else {
+          const json = await data.json();
+          errorSetter(false);
+          dataSetter(json);
+        }
+      }
+
+      return;
+    console.log('asdasd');
   } catch (error) {
-    errorSetter(`Something went wrong: ${error.status}`);
+    errorSetter(error.message);
   }
 };
 

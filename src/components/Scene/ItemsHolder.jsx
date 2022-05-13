@@ -1,7 +1,6 @@
 import Item from './Item';
 
 const ItemsHolder = ({ fetchedData }) => {
-  console.log(fetchedData);
   const { width, height } = fetchedData;
 
   return (

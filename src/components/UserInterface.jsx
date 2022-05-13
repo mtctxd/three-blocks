@@ -1,7 +1,6 @@
 const UserInterface = ({ userInterfaceHandlers, fetchedData, error }) => {
   const { setQuery, setIsButtonClicked } = userInterfaceHandlers;
 
-  console.log(`error in interface: ${JSON.stringify(fetchedData)}`);
   return (
     <div className="user-interface">
       <span>Project ID: </span>
