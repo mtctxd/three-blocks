@@ -2,7 +2,6 @@ import { BASE_URL } from '../constants';
 
 const fetchData = async (errorSetter, dataSetter, projectId) => {
   try {
-      console.log(`projectId: ${projectId}`);
     if (projectId) {
       const data = await fetch(`${BASE_URL}/project/${projectId}`);
       if (!data.ok) {
@@ -16,7 +15,6 @@ const fetchData = async (errorSetter, dataSetter, projectId) => {
       return;
     }
 
-    console.log(`!projectId ${projectId}`);
       const initialData = await fetch(`${BASE_URL}/init`);
 
       if (!initialData.ok) {
@@ -36,7 +34,6 @@ const fetchData = async (errorSetter, dataSetter, projectId) => {
       }
 
       return;
-    console.log('asdasd');
   } catch (error) {
     errorSetter(error.message);
   }

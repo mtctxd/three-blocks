@@ -1,8 +1,9 @@
 # three-blocks
 
-App that gets some information, and make some figures on canva
+App that gets some information, and make some figures on canva.
+I decided to use three.js if you dont mind. There is orbit control, so you can spin it arround.
 
-[DEMO](https://mtctxd.github.io/rick-and-morty-character-table/)
+[DEMO](https://mtctxd.github.io/three-blocks/)
 
 ## Technologies i used
 
@@ -22,4 +23,5 @@ App that gets some information, and make some figures on canva
 - Run `npm install` in your terminal
 - Run `npm run dev`
 
-So i had problem with getting errors 
+### errors
+So i had problem with getting errors. Server suppose to send some response for this error Id's. And insterd just redirected to standart next.js 500 page. Also the positioning is wierd, so i had to spin some objects.

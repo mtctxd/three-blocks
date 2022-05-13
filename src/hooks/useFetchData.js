@@ -9,8 +9,6 @@ const useFetchData = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    console.log(isButtonClicked, query);
-
     if (isButtonClicked && query) {
       fetchData(setError, setFetchedData, query);
       setIsButtonClicked(false);
